@@ -20,6 +20,8 @@ logs/
 
 #scripts
 scripts/
+dist/
+build/
 
 # ==========================
 # Node / Frontend
