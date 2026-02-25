@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const token = localStorage.getItem("token");
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
-        const res = await axios.get("http://localhost:8000/me", {
+        const res = await axios.get("http://localhost:8000/users/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -35,15 +35,15 @@ export const AuthProvider = ({ children }) => {
     fetchUser();
   }, [token]);
 
-  const login = (token) => {
-    localStorage.setItem("token", token);
-    window.location.reload();
+  const login = (newToken) => {
+    localStorage.setItem("token", newToken);
+    setToken(newToken);
   };
 
   const logout = () => {
     localStorage.removeItem("token");
+    setToken(null);
     setUser(null);
-    window.location.reload();
   };
 
   return (

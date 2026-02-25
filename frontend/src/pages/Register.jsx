@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import "../index.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa"
+import { AuthContext } from "../context/AuthContext";
 
 
 function Register() {
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
@@ -16,6 +19,9 @@ function Register() {
   });
 
   const [error, setError] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -54,8 +60,10 @@ function Register() {
         user_type: formData.role
       });
 
-      console.log("Registered:", response.data);
+      const token = response.data.access_token;
+      login(token);
       navigate("/dashboard");
+      console.log("Registered:", response.data);
 
     } catch (err) {
       if (err.response?.status === 400) {
@@ -105,23 +113,45 @@ function Register() {
             onChange={handleChange}
           />
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-            value={formData.password}
-            autoComplete="new-password"
-            onChange={handleChange}
-          />
+          <div className="password-wrapper">
 
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm your password"
-            value={formData.confirmPassword}
-            autoComplete="new-password"
-            onChange={handleChange}
-          />
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Enter your password"
+              value={formData.password}
+              autoComplete="new-password"
+              onChange={handleChange}
+            />
+
+            <span
+              className="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+
+          </div>
+
+          <div className="password-wrapper">
+
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              name="confirmPassword"
+              placeholder="Confirm your password"
+              value={formData.confirmPassword}
+              autoComplete="new-password"
+              onChange={handleChange}
+            />
+
+            <span
+              className="toggle-password"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            >
+              {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+
+          </div>
 
           <div className="radio-group">
             <label>

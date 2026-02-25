@@ -14,9 +14,7 @@ function App() {
         <Route
           path="/"
           element={
-            <PublicRoute>
               <Landing />
-            </PublicRoute>
           }
         />
 

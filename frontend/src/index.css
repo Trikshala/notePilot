@@ -200,3 +200,26 @@ h1 {
   color: #386641;
   text-decoration: underline;
 }
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+}
+
+.toggle-password :hover{
+  transform: scale(1.03);
+}

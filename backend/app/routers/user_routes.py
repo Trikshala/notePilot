@@ -2,12 +2,15 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from app.core.security import create_access_token, verify_token
 from app.crud.user_crud import authenticate_user, get_user_by_email, register_user
-from app.schemas.user_schema import LoginRequest, TokenResponse, UserCreate
+from app.schemas.user_schema import LoginRequest, TokenResponse, UserCreate, UserResponse
 from app.db.session import get_db
 from sqlalchemy.orm import Session
 
+router = APIRouter(
+    prefix="/users",
+    tags=["Users"]
+)
 
-router = APIRouter()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 @router.post("/login", response_model=TokenResponse)
@@ -31,11 +34,11 @@ def get_current_user(token : str = Depends(oauth2_scheme), db : Session = Depend
         )
     return user
 
-@router.get("/me")
+@router.get("/me", response_model=UserResponse)
 def read_me(current_user = Depends(get_current_user)):
     return current_user
 
-@router.post("/register")
+@router.post("/register", response_model=TokenResponse)
 def register(user : UserCreate, db : Session = Depends(get_db)):
     
     existing_user = get_user_by_email(db, user.email)
@@ -51,15 +54,9 @@ def register(user : UserCreate, db : Session = Depends(get_db)):
     access_token = create_access_token(data={"user": new_user.email})
     
     return {
-        "access_token" : access_token,
-        "token_type" : "bearer",
-        "user" : {
-        "id" : new_user.id,
-        "name" : new_user.name,
-        "phone" : new_user.phone,
-        "email" : new_user.email,
-        "user_type": new_user.user_type,
-        "created_at": new_user.created_at
-        }  
+        "access_token": access_token,
+        "token_type": "bearer",
+        "user": UserResponse.model_validate(new_user)
     }
+    
     

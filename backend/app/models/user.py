@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 from app.db.base import Base
 
 
@@ -13,5 +14,6 @@ class User(Base):
     password_hash = Column(String(length=255), nullable=False)
     user_type = Column(String(length=50), default="student")
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+    courses = relationship("Course", back_populates="user", cascade="all, delete")
 
 

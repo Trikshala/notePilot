@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import "../index.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../context/AuthContext";
+
 
 
 function Login() {
+    const { login } = useContext(AuthContext);
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
@@ -12,6 +16,8 @@ function Login() {
     });
 
     const [error, setError] = useState("");
+
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -38,9 +44,8 @@ function Login() {
                 password: formData.password
             });
             const token = response.data.access_token;
-            localStorage.setItem("token", token)
-            console.log("Login Successful!")
-            navigate("/dashboard")
+            login(token);
+            navigate("/dashboard");
         } catch (err) {
             if (err.response?.status === 401) {
                 setError("Invalid Email or Password!");
@@ -73,15 +78,22 @@ function Login() {
                         autoComplete="email"
                         onChange={handleChange}
                     />
-
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Enter your password"
-                        value={formData.password}
-                        autoComplete="new-password"
-                        onChange={handleChange}
-                    />
+                    <div className="password-wrapper">
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            name="password"
+                            placeholder="Enter your password"
+                            value={formData.password}
+                            autoComplete="new-password"
+                            onChange={handleChange}
+                        />
+                        <span
+                            className="toggle-password"
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                        </span>
+                    </div>
 
                     {error && <p className="error-message">{error}</p>}
 

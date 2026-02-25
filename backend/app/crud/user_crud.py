@@ -21,3 +21,4 @@ def register_user(db, user : UserCreate):
     db.commit()
     db.refresh(db_user)
     return db_user
+
