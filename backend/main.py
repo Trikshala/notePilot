@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
-from backend.app.routers.user_routes import router
+from app.routers.user_routes import router as user_router
+from app.routers.course_routes import router as course_router
+from app.routers.chapter_routes import router as chapter_router
 from app.db.base import Base
 from app.db.session import engine
 
@@ -18,13 +20,9 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-app.include_router(
-    router,
-    prefix="/users",
-    tags=["Users"]
-)
-
-from fastapi.middleware.cors import CORSMiddleware
+app.include_router(user_router)
+app.include_router(course_router)
+app.include_router(chapter_router)
 
 origins = [
     "http://localhost:5173",

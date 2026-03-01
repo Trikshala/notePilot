@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "../index.css";
+// import bgImage from "../assets/study-bg.jpg";
 
 function Landing() {
   const navigate = useNavigate();
@@ -37,7 +38,8 @@ function Landing() {
           </button>
         </div>
       </div>
-    </div>
+    </ div>
+
   );
 }
 

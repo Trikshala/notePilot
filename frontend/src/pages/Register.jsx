@@ -61,7 +61,7 @@ function Register() {
       });
 
       const token = response.data.access_token;
-      login(token);
+      await login(token);
       navigate("/dashboard");
       console.log("Registered:", response.data);
 

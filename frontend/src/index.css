@@ -85,7 +85,7 @@ h1 {
 }
 
 
-/* ================= auth PAGE ================= */
+/* ================= Auth PAGE ================= */
 
 .auth-container {
   min-height: 100vh;
@@ -223,3 +223,4 @@ h1 {
 .toggle-password :hover{
   transform: scale(1.03);
 }
+

@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.sql import func
-from app.db.base import Base
+from app.db.session import Base
 from sqlalchemy.orm import relationship
 
 class Course(Base):

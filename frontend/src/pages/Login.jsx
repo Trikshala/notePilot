@@ -44,7 +44,7 @@ function Login() {
                 password: formData.password
             });
             const token = response.data.access_token;
-            login(token);
+            await login(token);
             navigate("/dashboard");
         } catch (err) {
             if (err.response?.status === 401) {

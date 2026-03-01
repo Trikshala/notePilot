@@ -35,9 +35,22 @@ export const AuthProvider = ({ children }) => {
     fetchUser();
   }, [token]);
 
-  const login = (newToken) => {
+  const login = async (newToken) => {
     localStorage.setItem("token", newToken);
     setToken(newToken);
+
+    try {
+      const res = await axios.get("http://localhost:8000/users/me", {
+        headers: {
+          Authorization: `Bearer ${newToken}`,
+        },
+      });
+
+      setUser(res.data);
+    } catch (err) {
+      localStorage.removeItem("token");
+      setUser(null);
+    }
   };
 
   const logout = () => {

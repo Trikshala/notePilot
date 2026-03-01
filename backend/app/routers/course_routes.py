@@ -11,6 +11,7 @@ router = APIRouter(
     tags=["Courses"]
 )
 
+
 @router.post("/", response_model=CourseResponse)
 def create_new_course(course_data: CreateCourse, current_user = Depends(get_current_user), db: Session = Depends(get_db)):
     course = create_course(db, current_user.id, course_data)

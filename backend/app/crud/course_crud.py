@@ -8,6 +8,7 @@ def create_course(db, user_id, course_data : CreateCourse):
     db.refresh(course)
     return course
 
+
 def get_courses_by_user(db, user_id):
     courses = db.query(Course).filter(Course.user_id == user_id).all()
     return courses

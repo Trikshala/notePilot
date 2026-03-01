@@ -3,7 +3,6 @@ from datetime import datetime
 
 class CreateChapter(BaseModel):
     title : str
-    order_index : int
     course_id : int
 
 class ChapterResponse(BaseModel):

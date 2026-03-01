@@ -1,3 +1,5 @@
-from sqlalchemy.orm import declarative_base
+from app.db.session import Base
 
-Base = declarative_base()
+from app.models.user import User
+from app.models.course import Course
+from app.models.chapter import Chapter
