@@ -15,4 +15,5 @@ class CourseResponse(BaseModel):
         from_attributes = True
         
 class UpdateCourse(BaseModel):
-    new_title : str
+    title : str
+    description : str

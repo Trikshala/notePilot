@@ -72,3 +72,4 @@ def delete_chapter(db, course_id, chapter_id, user_id):
 
     db.delete(chapter)
     db.commit()
+    

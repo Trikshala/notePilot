@@ -3,7 +3,7 @@ from fastapi import Response
 from app.db.session import get_db
 from sqlalchemy.orm import Session
 from app.schemas.course_schema import CourseResponse, CreateCourse, UpdateCourse
-from app.crud.course_crud import create_course, get_courses_by_user, get_course_by_id, update_course_title, delete_course
+from app.crud.course_crud import create_course, get_courses_by_user, get_course_by_id, update_course_details, delete_course
 from app.routers.user_routes import get_current_user
 
 router = APIRouter(
@@ -33,9 +33,9 @@ def get_course(course_id : int, current_user = Depends(get_current_user), db : S
         )
     return CourseResponse.model_validate(course)
 
-@router.patch("/{course_id}", response_model=CourseResponse)
+@router.put("/{course_id}", response_model=CourseResponse)
 def update_course(course_id : int, update_data : UpdateCourse, current_user = Depends(get_current_user), db : Session = Depends(get_db)):
-    course = update_course_title(db, course_id, current_user.id, update_data.new_title)
+    course = update_course_details(db, course_id, current_user.id, update_data)
     if not course:
         raise HTTPException(
             status_code = status.HTTP_404_NOT_FOUND,

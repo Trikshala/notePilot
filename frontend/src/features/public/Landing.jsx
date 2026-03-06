@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import "../index.css";
-// import bgImage from "../assets/study-bg.jpg";
+import "../../styles/public.css";
 
 function Landing() {
   const navigate = useNavigate();

@@ -54,6 +54,6 @@ def delete_chapter_route(course_id : int, chapter_id : int,current_user = Depend
             status_code = status.HTTP_404_NOT_FOUND,
             detail="Chapter Not Found"
         )
-    delete_chapter(db, course_id, chapter_id)
+    delete_chapter(db, course_id, chapter_id, current_user.id)
     
     return Response(status_code=status.HTTP_204_NO_CONTENT)

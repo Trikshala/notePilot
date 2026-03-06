@@ -1,9 +1,8 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../services/api";
-import "../index.css";
+import api from "../../services/api";
 import { FaEye, FaEyeSlash } from "react-icons/fa"
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
 
 function Register() {

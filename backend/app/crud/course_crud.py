@@ -19,11 +19,12 @@ def get_course_by_id(db, course_id, user_id):
         return None
     return course
 
-def update_course_title(db, course_id, user_id, new_title):
+def update_course_details(db, course_id, user_id, update_data):
     course = get_course_by_id(db, course_id, user_id)
     if not course:
         return None
-    course.title = new_title
+    course.title = update_data.title
+    course.description = update_data.description
     db.commit()
     db.refresh(course)
     return course

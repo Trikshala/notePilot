@@ -1,0 +1,21 @@
+.course-container {
+  display: flex;
+  height: calc(100vh - 70px);
+  background-color: #f8f6f1; 
+}
+
+.course-main {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.course-main h2 {
+  font-size: 1.6rem;
+  color: #2e2e2e;
+}
+
+.course-main p {
+  margin-top: 10px;
+  color: #666;
+}
