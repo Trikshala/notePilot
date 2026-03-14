@@ -1,130 +1,388 @@
+/* ── Chapter Page ── */
 .chapter-page {
-  padding: 30px;
-  padding-top: 0;
+  padding: 28px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* HEADER */
-
-.chapter-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:24px;
+.chapter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
 }
 
-.chapter-header h2{
-  font-size:28px;
-  font-weight:600;
+.chapter-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
-
-/* MAIN LAYOUT */
-
-.chapter-main{
-  display:flex;
-  gap:24px;
-  align-items:stretch;
+.back-btn {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 0.85rem;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-
-/* LEFT PANEL */
-
-.left-panel{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  gap:20px;
+.back-btn:hover {
+  background-color: #f0ede8;
+  border-color: #bbb;
 }
 
-
-/* RIGHT PANEL */
-
-.notes-panel{
-  flex:2.3;
-  display:flex;
-  flex-direction:column;
-
-  border:1px solid #e5e7eb;
-  padding:20px;
-  border-radius:8px;
-  background:white;
+.chapter-header h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #2e2e2e;
 }
 
-
-/* CARDS */
-
-.upload-section,
-.generate-section{
-  border:1px solid #e5e7eb;
-  padding:20px;
-  border-radius:8px;
-  background:white;
+/* ── Main Layout ── */
+.chapter-main {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+  align-items: start;
 }
 
-
-/* INPUTS */
-
-.upload-section textarea{
-  width:100%;
-  resize:vertical;
+/* ── Left Panel ── */
+.left-panel {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e8e4de;
+  padding: 20px;
+  position: sticky;
+  top: 20px;
 }
 
-.chapter-page textarea{
-  width:100%;
-  margin-top:10px;
-  padding:10px;
-  resize:vertical;
+.upload-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2e2e2e;
+  margin-bottom: 6px;
 }
 
-.chapter-page input[type="file"]{
-  margin-top:10px;
+.section-hint {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 14px;
 }
 
-
-/* NOTES WINDOW */
-
-.notes-window{
-  flex:1;
-  margin-top:10px;
-
-  overflow-y:auto;
-
-  padding:16px;
-  border:1px solid #e5e7eb;
-  border-radius:8px;
-  background:#fafafa;
+.upload-label {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  border: 2px dashed #c8e6c9;
+  border-radius: 10px;
+  color: #386641;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 14px;
 }
 
-
-/* BUTTONS */
-
-.chapter-page .primary-btn{
-  margin-top:12px;
-  padding:10px 16px;
+.upload-label:hover {
+  background-color: #f0f8f0;
+  border-color: #386641;
 }
 
-
-.chapter-page .primary-btn:not(:disabled):hover{
-  background-color:#2f5234;
-  transform:translateY(-2px);
+.doc-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-/* disabled state */
-.chapter-page .primary-btn:disabled{
-  background-color:#a0aec0;
-  cursor:not-allowed;
-  opacity:0.6;
-  transform:none;
+.doc-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8f6f1;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.85rem;
 }
 
-/* QUIZ BUTTON */
+.doc-icon { font-size: 1rem; }
 
-.quiz-btn{
-  padding:8px 16px;
-  border-radius:6px;
-  border:none;
-  background:#f59e0b;
-  color:white;
-  cursor:not-allowed;
-  opacity:0.6;
+.doc-name {
+  flex: 1;
+  color: #2e2e2e;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.doc-delete {
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.doc-delete:hover {
+  color: #c0392b;
+  background: #fdecea;
+}
+
+.no-docs {
+  font-size: 0.82rem;
+  color: #aaa;
+  text-align: center;
+  padding: 12px 0;
+}
+
+/* ── Right Panel ── */
+.right-panel {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e8e4de;
+  overflow: hidden;
+}
+
+/* ── Tab Bar ── */
+.tab-bar {
+  display: flex;
+  border-bottom: 1px solid #e8e4de;
+  background: #faf9f7;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  background: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #888;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-btn:hover {
+  color: #386641;
+  background: #f0f8f0;
+}
+
+.tab-btn.active {
+  color: #386641;
+  border-bottom: 2px solid #386641;
+  background: #ffffff;
+}
+
+.tab-content {
+  padding: 24px;
+}
+
+/* ── Controls ── */
+.note-controls,
+.quiz-controls {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.control-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pill-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  padding: 7px 16px;
+  border-radius: 20px;
+  border: 1.5px solid #ddd;
+  background: #faf9f7;
+  color: #555;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pill:hover {
+  border-color: #386641;
+  color: #386641;
+}
+
+.pill.active {
+  background: #386641;
+  border-color: #386641;
+  color: white;
+  font-weight: 500;
+}
+
+/* Difficulty pill colors */
+.pill.difficulty-pill.active.easy { background: #2d6a4f; border-color: #2d6a4f; }
+.pill.difficulty-pill.active.medium { background: #e07b00; border-color: #e07b00; }
+.pill.difficulty-pill.active.hard { background: #c0392b; border-color: #c0392b; }
+
+.generate-btn {
+  align-self: flex-start;
+  padding: 10px 24px;
+  font-size: 0.95rem;
+}
+
+.btn-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.hint-message {
+  font-size: 0.82rem;
+  color: #aaa;
+}
+
+/* ── Notes Window ── */
+.notes-window {
+  min-height: 300px;
+  background: #faf9f7;
+  border-radius: 12px;
+  border: 1px solid #e8e4de;
+  padding: 20px;
+}
+
+.notes-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  gap: 8px;
+  color: #aaa;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.notes-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.note-badge {
+  background: #e8f5e9;
+  color: #386641;
+  border-radius: 12px;
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.delete-note-btn {
+  margin-left: auto;
+  background: none;
+  border: 1px solid #eee;
+  color: #aaa;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.delete-note-btn:hover {
+  color: #c0392b;
+  border-color: #c0392b;
+  background: #fdecea;
+}
+
+.notes-content {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: #2e2e2e;
+}
+
+.note-heading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #386641;
+  margin: 16px 0 8px;
+}
+
+.note-bullet {
+  margin-left: 20px;
+  margin-bottom: 4px;
+  list-style: disc;
+}
+
+.note-para {
+  margin-bottom: 10px;
+}
+
+/* ── Quiz Info Box ── */
+.quiz-info-box {
+  background: #f0f8f0;
+  border: 1px solid #c8e6c9;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-top: 8px;
+}
+
+.quiz-info-box h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #386641;
+  margin-bottom: 10px;
+}
+
+.quiz-info-box ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.quiz-info-box ul li {
+  font-size: 0.85rem;
+  color: #555;
+  padding-left: 14px;
+  position: relative;
+}
+
+.quiz-info-box ul li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #386641;
 }

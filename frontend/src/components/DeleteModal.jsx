@@ -11,7 +11,7 @@ const DeleteModal = ({ isOpen, onClose, onConfirm, itemName, entityName }) => {
                 </button>
                 <h3>Delete Confirmation</h3>
                 <p>
-                    Are you sure you want to delete <strong>{itemName}</strong> {entityName}?
+                    Are you sure you want to delete <strong>{itemName}</strong> {entityName}? All your uploaded content and progress will be lost.
                 </p>
                 <div className="modal-buttons">
                     <button onClick={onClose} className="cancel-btn">Cancel</button>

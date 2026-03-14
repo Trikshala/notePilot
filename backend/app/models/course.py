@@ -14,3 +14,4 @@ class Course(Base):
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     user = relationship("User", back_populates="courses")
     chapters = relationship("Chapter", back_populates="course", cascade="all, delete")
+    

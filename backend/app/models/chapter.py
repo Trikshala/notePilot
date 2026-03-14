@@ -13,3 +13,7 @@ class Chapter(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     course_id = Column(Integer, ForeignKey("courses.id"), nullable=False)
     course = relationship("Course", back_populates="chapters")
+    documents = relationship("Document", back_populates="chapter", cascade="all, delete-orphan")
+    notes = relationship("Note", back_populates="chapter", cascade="all, delete-orphan")
+    quiz_attempts = relationship("QuizAttempt", back_populates="chapter", cascade="all, delete-orphan")
+    

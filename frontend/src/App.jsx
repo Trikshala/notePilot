@@ -8,6 +8,7 @@ import Courses from "./features/courses/Courses";
 import CourseView from "./features/courses/CourseView";
 import ChapterView from "./features/chapters/ChapterView";
 import Analytics from "./features/analytics/Analytics";
+import QuizPage from "./features/quiz/QuizPage";  
 
 import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
@@ -16,40 +17,23 @@ function App() {
   return (
     <Routes>
 
-      <Route
-        path="/"
-        element={
-          <PublicRoute>
-            <Landing />
-          </PublicRoute>
-        }
-      />
+      <Route path="/" element={<PublicRoute><Landing /></PublicRoute>} />
+      <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+      <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
 
+      {/* ← Add this OUTSIDE dashboard layout — no navbar/sidebar */}
       <Route
-        path="/login"
+        path="/quiz/:chapterId"
         element={
-          <PublicRoute>
-            <Login />
-          </PublicRoute>
-        }
-      />
-
-      <Route
-        path="/register"
-        element={
-          <PublicRoute>
-            <Register />
-          </PublicRoute>
+          <ProtectedRoute>
+            <QuizPage />
+          </ProtectedRoute>
         }
       />
 
       <Route
         path="/dashboard"
-        element={
-          <ProtectedRoute>
-            <DashboardLayout />
-          </ProtectedRoute>
-        }
+        element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}
       >
         <Route path="courses" element={<Courses />} />
         <Route path="courses/:id" element={<CourseView />}>

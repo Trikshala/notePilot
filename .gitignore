@@ -44,3 +44,8 @@ Thumbs.db
 # ==========================
 .pytest_cache/
 .mypy_cache/
+
+# ==========================
+# Temp Dirs
+# ==========================
+uploaded_docs/

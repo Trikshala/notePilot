@@ -1,5 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status
-from fastapi import Response
+from fastapi import APIRouter, Depends, HTTPException, status, Response
 from app.db.session import get_db
 from sqlalchemy.orm import Session
 from app.schemas.chapter_schema import ChapterResponse, CreateChapter, UpdateChapter
